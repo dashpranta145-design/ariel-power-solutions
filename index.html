@@ -18,10 +18,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Audiowide"
-    />
+
     <style>
       /* Global Styles */
       * {
@@ -297,7 +294,8 @@
           height: 50px;
           border-radius: 50%;
           top: auto;
-          bottom: 100px;
+          bottom: 5px;
+          right: 10px;
         }
         .calculator-btn-text {
           display: none;
@@ -1192,13 +1190,15 @@
       }
       @media (max-width: 991px) {
         .navbar-brand {
-          margin-right: 0;
+          margin-right: 20px;
           flex-direction: row;
           align-items: center;
+          gap: 2px;
+          font-size: 15px;
         }
         .brand-logo {
           margin-bottom: 0;
-          margin-right: 10px;
+          margin-right: 15px;
         }
         .projects-navbar {
           top: 80px;
@@ -1248,6 +1248,10 @@
         }
       }
       @media (max-width: 768px) {
+        .scroll-top {
+          bottom: 80px;
+          right: 10px;
+        }
         .project-specs {
           grid-template-columns: 1fr;
         }
@@ -1395,8 +1399,13 @@
           height: 150px;
         }
         /* Hide brand name on small screens */
+        .navbar-brand {
+          margin-left: -10px;
+          gap: 0px;
+        }
         .navbar-brand span {
           display: block;
+          margin-left: -20px;
         }
       }
     </style>
@@ -1481,6 +1490,7 @@
           </div>
           <span>Ariel Power Solution</span>
         </a>
+
         <div class="hamburger" onclick="toggleMenu()">
           <span></span>
           <span></span>
@@ -1666,20 +1676,7 @@
                 Shariatpur
               </p>
             </div>
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">System Size</div>
-                <div class="spec-value">15 kW</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Annual Output</div>
-                <div class="spec-value">21,900 kWh</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">CO₂ Offset</div>
-                <div class="spec-value">16.4 tons/yr</div>
-              </div>
-            </div>
+
             <div class="project-detail-section">
               <h4 class="detail-title">
                 <i class="fas fa-info-circle"></i>
@@ -1773,20 +1770,7 @@
                 Kushtia
               </p>
             </div>
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">System Size</div>
-                <div class="spec-value">50 kW</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Annual Output</div>
-                <div class="spec-value">73,000 kWh</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">CO₂ Offset</div>
-                <div class="spec-value">54.8 tons/yr</div>
-              </div>
-            </div>
+
             <div class="project-detail-section">
               <h4 class="detail-title">
                 <i class="fas fa-info-circle"></i>
@@ -1876,20 +1860,7 @@
                 BSCIC, Gazipur
               </p>
             </div>
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">System Size</div>
-                <div class="spec-value">200 kW</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Annual Output</div>
-                <div class="spec-value">292,000 kWh</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">CO₂ Offset</div>
-                <div class="spec-value">219 tons/yr</div>
-              </div>
-            </div>
+
             <div class="project-detail-section">
               <h4 class="detail-title">
                 <i class="fas fa-info-circle"></i>
@@ -1978,20 +1949,7 @@
                 Habiganj
               </p>
             </div>
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">System Size</div>
-                <div class="spec-value">25 kW</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Annual Output</div>
-                <div class="spec-value">36,500 kWh</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">CO₂ Offset</div>
-                <div class="spec-value">27.4 tons/yr</div>
-              </div>
-            </div>
+
             <div class="project-detail-section">
               <h4 class="detail-title">
                 <i class="fas fa-info-circle"></i>
@@ -2080,20 +2038,7 @@
                 jashore
               </p>
             </div>
-            <div class="project-specs">
-              <div class="spec-item">
-                <div class="spec-label">System Size</div>
-                <div class="spec-value">1 MW</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">Annual Output</div>
-                <div class="spec-value">1,460 MWh</div>
-              </div>
-              <div class="spec-item">
-                <div class="spec-label">CO₂ Offset</div>
-                <div class="spec-value">1,095 tons/yr</div>
-              </div>
-            </div>
+
             <div class="project-detail-section">
               <h4 class="detail-title">
                 <i class="fas fa-info-circle"></i>
