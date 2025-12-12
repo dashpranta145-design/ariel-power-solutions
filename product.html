@@ -800,6 +800,56 @@
         transform: scale(1.1);
         color: white;
       }
+      .support-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .support-links div {
+        margin-top: -15px;
+        margin-left: -10px;
+        height: 60px;
+        width: 60px;
+
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s ease;
+        cursor: pointer;
+      }
+
+      .support-links div:hover {
+        border: 1px solid white;
+        border-radius: 10px;
+        transform: translateY(-4px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      }
+
+      .support-links div i {
+        font-size: 32px;
+        color: #333;
+      }
+
+      /* Optional brand colors */
+      .support-links div:nth-child(1) i {
+        color: #25d366;
+      } /* WhatsApp */
+      .support-links div:nth-child(2) i {
+        color: #0084ff;
+      } /* Messenger */
+      .support-links div:nth-child(3) i {
+        color: #2aabee;
+      } /* Telegram */
+      .support-links div:nth-child(1) i:hover {
+        color: whitesmoke;
+      }
+      .support-links div:nth-child(2) i:hover {
+        color: whitesmoke;
+      }
+      .support-links div:nth-child(3) i:hover {
+        color: whitesmoke;
+      }
 
       /* Responsive Styles */
       @media (max-width: 1199px) {
@@ -885,6 +935,15 @@
         .product-item {
           min-width: 250px;
           height: 300px;
+        }
+        .support-links {
+          display: flex;
+          gap: 25px;
+        }
+
+        .support-links div {
+          height: 50px;
+          width: 50px;
         }
       }
 
@@ -1307,7 +1366,11 @@
           <div class="col-md-3">
             <div class="footer-column">
               <h5>Support</h5>
-              <p>Support services coming soon...</p>
+              <div class="support-links">
+                <div><i class="fab fa-whatsapp"></i></div>
+                <div><i class="fab fa-facebook-messenger"></i></div>
+                <div><i class="fab fa-telegram"></i></div>
+              </div>
             </div>
           </div>
         </div>
