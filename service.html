@@ -1225,6 +1225,9 @@
             <div class="service-item" onclick="showService(4)">
               Operation & Maintenance (O&M)
             </div>
+            <div class="service-item" onclick="showService(5)">
+              Ground / Utility Scale Solar
+            </div>
           </div>
 
           <div class="service-content" id="serviceContent">
@@ -1436,6 +1439,161 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      // Service Data Array
+      const serviceData = [
+        {
+          image: "images/Residential-Rooftop-Solar.jpg",
+          title: "Residential Rooftop Solar (On-Grid / Hybrid)",
+          content: `
+          <h3>Residential Rooftop Solar (On-Grid / Hybrid)</h3>
+          <p>Power your home with clean, affordable solar energy. Our Residential Solar Systems are designed for long-term performance, energy savings, and a sustainable lifestyle.</p>
+          <p><strong>On-Grid System:</strong> Connects to the national grid through Net Metering, reducing your monthly electricity cost.</p>
+          <p><strong>Hybrid System:</strong> Includes smart battery backup for uninterrupted power during grid outages.</p>
+          <p>Each system is custom-engineered using Tier-1 solar panels, high-efficiency inverters, and certified mounting structures. We handle everything — survey, design, government approval, installation, and O&M — ensuring a smooth experience for every homeowner.</p>
+          `,
+        },
+        {
+          image: "images/commercial.jpg",
+          title: "Commercial Solar Solutions",
+          content: `
+          <h3>Commercial Solar Solutions</h3>
+          <p>Reduce operating costs and go green with solar power. Ideal for offices, educational institutions, hospitals, and commercial buildings.</p>
+          <p><strong>On-Grid System:</strong> Connects directly to the utility grid, allowing you to sell excess power back through net metering.</p>
+          <p><strong>Hybrid System:</strong> Combines solar with battery storage for backup power during outages.</p>
+          <p><strong>Key benefits:</strong> Lower electricity bills, quick ROI, enhanced corporate sustainability image, and long system lifespan.</p>
+          <p>We provide complete EPC services including feasibility studies, system design, installation, and ongoing maintenance support.</p>
+          `,
+        },
+        {
+          image: "images/Industrial-Utility-Scale-Solar.jpg",
+          title: "Industrial & Utility-Scale Solar",
+          content: `
+          <h3>Industrial & Utility-Scale Solar</h3>
+          <p>Large-scale, high-performance solar power plants built for reliability and efficiency. We design and implement megawatt-scale solar projects for industries, factories, and solar parks.</p>
+          <ul>
+            <li><strong>Feasibility study & site survey:</strong> Comprehensive analysis of your energy needs and site conditions</li>
+            <li><strong>System design & engineering:</strong> Customized solutions for maximum energy production</li>
+            <li><strong>Supply, installation & commissioning:</strong> End-to-end project execution</li>
+            <li><strong>Grid integration & performance monitoring:</strong> Seamless connection and real-time tracking</li>
+          </ul>
+          <p>We ensure maximum energy yield, minimal downtime, and full regulatory compliance under Bangladesh's energy policies.</p>
+          `,
+        },
+        {
+          image: "images/Energy-Storage-Systems(BESS).png",
+          title: "Energy Storage Systems (BESS)",
+          content: `
+          <h3>Energy Storage Systems (BESS)</h3>
+          <p>Smarter energy management through advanced battery storage systems. Store excess solar energy for use during peak demand or grid outages — ensuring uninterrupted, optimized power flow.</p>
+          <p><strong>Key Applications:</strong></p>
+          <ul>
+            <li><strong>Grid stability and frequency control:</strong> Support grid operations during fluctuations</li>
+            <li><strong>Load shifting and peak shaving:</strong> Reduce demand charges by using stored energy during peak hours</li>
+            <li><strong>Enhanced backup reliability:</strong> Provide critical power during outages</li>
+            <li><strong>Renewable integration:</strong> Smooth out intermittent solar power generation</li>
+          </ul>
+          <p>Ideal for hybrid solar systems and off-grid solutions seeking higher energy independence. We offer lithium-ion and advanced lead-acid battery solutions with intelligent management systems.</p>
+          `,
+        },
+        {
+          image: "images/Operation-Maintenance(O&M).png",
+          title: "Operation & Maintenance (O&M)",
+          content: `
+          <h3>Operation & Maintenance (O&M)</h3>
+          <p>Maximize system performance, reliability, and returns through our comprehensive O&M services. Regular maintenance ensures your solar investment continues to deliver optimal results for years to come.</p>
+          <ul>
+            <li><strong>Regular inspection & preventive maintenance:</strong> Scheduled checks to identify and prevent issues</li>
+            <li><strong>Real-time monitoring & performance analytics:</strong> 24/7 system monitoring with detailed reporting</li>
+            <li><strong>Fault diagnosis & immediate response:</strong> Quick troubleshooting and repair services</li>
+            <li><strong>Panel cleaning & vegetation management:</strong> Keeping your system operating at peak efficiency</li>
+            <li><strong>Warranty management:</strong> Handling all manufacturer warranty claims</li>
+            <li><strong>Performance optimization:</strong> Fine-tuning systems for maximum output</li>
+          </ul>
+          <p>Our skilled technical team ensures higher uptime, longer system life, and optimal energy output with prompt service response.</p>
+          `,
+        },
+        {
+          image: "images/Industrial-Utility-Scale-Solar.jpg",
+          title: "Ground / Utility Scale Solar",
+          content: `
+          <h3>Ground / Utility Scale Solar</h3>
+          <p>Large-scale solar power generation for utility companies and industrial applications. We design and implement ground-mounted solar farms that deliver maximum energy output with optimal land use.</p>
+          <p><strong>Key Features:</strong></p>
+          <ul>
+            <li><strong>Site assessment and feasibility studies:</strong> Comprehensive analysis of land suitability</li>
+            <li><strong>Complete EPC (Engineering, Procurement, Construction):</strong> Turnkey solutions from design to commissioning</li>
+            <li><strong>Grid integration and power evacuation:</strong> Seamless connection to national grid</li>
+            <li><strong>Performance monitoring and maintenance:</strong> Ongoing support for optimal operation</li>
+            <li><strong>Advanced tracking systems:</strong> Single or dual-axis trackers for maximum sun exposure</li>
+            <li><strong>Land optimization:</strong> Efficient use of available space for maximum power generation</li>
+          </ul>
+          <p>Our utility-scale solutions help meet national renewable energy targets while providing reliable, cost-effective power for industrial complexes, agricultural operations, and community solar projects.</p>
+          `,
+        },
+      ];
+
+      // Function to get URL parameters
+      function getUrlParameter(name) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+        const results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // Function to show specific service based on URL parameter
+      function showServiceFromURL() {
+        const serviceParam = getUrlParameter("service");
+
+        if (serviceParam) {
+          // Map URL parameters to service indices
+          const serviceMap = {
+            residential: 0,
+            commercial: 1,
+            industrial: 2,
+            storage: 3,
+            maintenance: 4,
+            ground: 5,
+          };
+
+          // Check if we have a valid service parameter
+          if (serviceMap.hasOwnProperty(serviceParam)) {
+            const serviceIndex = serviceMap[serviceParam];
+            showService(serviceIndex);
+
+            // Scroll to the services section
+            setTimeout(() => {
+              document.getElementById("services").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }, 100);
+          }
+        }
+      }
+
+      // Function to show service
+      function showService(index) {
+        const items = document.querySelectorAll(".service-item");
+        const content = document.getElementById("serviceContent");
+
+        items.forEach((item, i) => {
+          item.classList.toggle("active", i === index);
+        });
+
+        const service = serviceData[index];
+        const imageHTML = service.image
+          ? `<img src="${service.image}" alt="${service.title}">`
+          : "";
+        content.innerHTML = imageHTML + service.content;
+
+        // Smooth scroll to top of service content on mobile
+        if (window.innerWidth <= 991) {
+          content.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+
       // Mobile Navigation Functions - COMPLETELY FIXED
       function toggleMenu() {
         const navbarCollapse = document.getElementById("navbarNav");
@@ -1475,95 +1633,6 @@
           }
         });
       });
-
-      // Service Switching Logic
-      const serviceData = [
-        {
-          image: "images/Residential-Rooftop-Solar.jpg",
-          title: "Residential Rooftop Solar (On-Grid / Hybrid)",
-          content: `
-          <h3>Residential Rooftop Solar (On-Grid / Hybrid)</h3>
-          <p>Power your home with clean, affordable solar energy. Our Residential Solar Systems are designed for long-term performance, energy savings, and a sustainable lifestyle.</p>
-          <p><strong>On-Grid System:</strong> Connects to the national grid through Net Metering, reducing your monthly electricity cost.</p>
-          <p><strong>Hybrid System:</strong> Includes smart battery backup for uninterrupted power during grid outages.</p>
-          <p>Each system is custom-engineered using Tier-1 solar panels, high-efficiency inverters, and certified mounting structures. We handle everything — survey, design, government approval, installation, and O&M — ensuring a smooth experience for every homeowner.</p>
-        `,
-        },
-        {
-          image: "images/commercial.jpg",
-          title: "Commercial Solar Solutions",
-          content: `
-          <h3>Commercial Solar Solutions</h3>
-          <p>Reduce operating costs and go green with solar power. Ideal for offices, educational institutions, hospitals, and commercial buildings.</p>
-          <p>Flexible options: On-Grid, Hybrid, or Energy Storage integrated.</p>
-          <p><strong>Key benefits:</strong> Lower electricity bills, quick ROI, and long system lifespan.</p>
-          <p>We provide complete design, EPC, installation, and monitoring support — ensuring seamless integration of solar with your business infrastructure.</p>
-        `,
-        },
-        {
-          image: "images/Industrial-Utility-Scale-Solar.jpg",
-          title: "Industrial & Utility-Scale Solar",
-          content: `
-          <h3>Industrial & Utility-Scale Solar</h3>
-          <p>Large-scale, high-performance solar power plants built for reliability and efficiency. We design and implement megawatt-scale solar projects for industries, factories, and solar parks.</p>
-          <ul>
-            <li>Feasibility study & site survey</li>
-            <li>System design & engineering</li>
-            <li>Supply, installation & commissioning</li>
-            <li>Grid integration & performance monitoring</li>
-          </ul>
-          <p>We ensure maximum energy yield, minimal downtime, and full regulatory compliance under Bangladesh's energy policies.</p>
-        `,
-        },
-        {
-          image: "images/Energy-Storage-Systems(BESS).png",
-          title: "Energy Storage Systems (BESS)",
-          content: `
-          <h3>Energy Storage Systems (BESS)</h3>
-          <p>Smarter energy management through advanced battery storage systems.</p>
-          <p>Store excess solar energy for use during peak demand or grid outages — ensuring uninterrupted, optimized power flow.</p>
-          <ul>
-            <li>Grid stability and frequency control</li>
-            <li>Load shifting and peak shaving</li>
-            <li>Enhanced backup reliability</li>
-          </ul>
-          <p>Ideal for hybrid solar systems and off-grid solutions seeking higher energy independence.</p>
-        `,
-        },
-        {
-          image: "images/Operation-Maintenance(O&M).png",
-          title: "Operation & Maintenance (O&M)",
-          content: `
-          <h3>Operation & Maintenance (O&M)</h3>
-          <p>Maximize system performance, reliability, and returns through our comprehensive O&M services.</p>
-          <ul>
-            <li>Regular inspection & preventive maintenance</li>
-            <li>Real-time monitoring & performance analytics</li>
-            <li>Fault diagnosis & immediate response</li>
-          </ul>
-          <p>Our skilled technical team ensures higher uptime, longer system life, and optimal energy output.</p>
-        `,
-        },
-      ];
-
-      function showService(index) {
-        const items = document.querySelectorAll(".service-item");
-        const content = document.getElementById("serviceContent");
-
-        items.forEach((item, i) => {
-          item.classList.toggle("active", i === index);
-        });
-
-        const imageHTML = serviceData[index].image
-          ? `<img src="${serviceData[index].image}" alt="${serviceData[index].title}">`
-          : "";
-        content.innerHTML = imageHTML + serviceData[index].content;
-
-        // Smooth scroll to top of service content on mobile
-        if (window.innerWidth <= 991) {
-          content.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
-      }
 
       // Calculator Functions
       function showCalculator() {
@@ -1688,6 +1757,9 @@
             wrap: true,
           });
         }
+
+        // Show service from URL parameter
+        showServiceFromURL();
       });
     </script>
   </body>

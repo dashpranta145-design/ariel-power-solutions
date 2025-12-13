@@ -967,6 +967,7 @@
         transition: all 0.3s ease;
         height: 100%;
         border: 2px solid transparent;
+        cursor: pointer;
       }
       .service-box:hover {
         transform: translateY(-10px);
@@ -988,7 +989,7 @@
         background-color: transparent;
         border-radius: 10px;
         padding: 5px;
-        margin-left: 40%;
+        margin-left: 41%;
         font-size: 15px;
         font-weight: 500;
         text-decoration: none;
@@ -1762,6 +1763,7 @@
                   <i class="fas fa-check-circle"></i>
                   Tier-1 monocrystalline solar panels with 25-year warranty
                 </li>
+
                 <li>
                   <i class="fas fa-check-circle"></i>
                   Premium hybrid inverter with battery backup capability
@@ -2166,7 +2168,7 @@
         <div class="services-container">
           <div class="row">
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('residential')">
                 <div>
                   <i class="fas fa-home fa-2x mb-3"></i>
                   <h6>Residential Rooftop Solar (On-grid/Hybrid)</h6>
@@ -2174,7 +2176,7 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('commercial')">
                 <div>
                   <i class="fas fa-building fa-2x mb-3"></i>
                   <h6>Commercial Rooftop Solar (On-grid/Hybrid)</h6>
@@ -2182,7 +2184,7 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('industrial')">
                 <div>
                   <i class="fas fa-industry fa-2x mb-3"></i>
                   <h6>Industrial Rooftop Solar (On-grid/Hybrid)</h6>
@@ -2190,7 +2192,7 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('ground')">
                 <div>
                   <i class="fas fa-solar-panel fa-2x mb-3"></i>
                   <h6>Ground / Utility Scale Solar</h6>
@@ -2198,7 +2200,7 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('storage')">
                 <div>
                   <i class="fas fa-battery-full fa-2x mb-3"></i>
                   <h6>Energy Storage</h6>
@@ -2206,7 +2208,7 @@
               </div>
             </div>
             <div class="col-md-6 col-lg-4 mb-4">
-              <div class="service-box">
+              <div class="service-box" onclick="goToService('maintenance')">
                 <div>
                   <i class="fas fa-tools fa-2x mb-3"></i>
                   <h6>Operation & Maintenance / Monitoring</h6>
@@ -2385,6 +2387,12 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      // Service Navigation Function
+      function goToService(serviceType) {
+        // Redirect to service.html with the service type as parameter
+        window.location.href = `service.html?service=${serviceType}`;
+      }
+
       // Mobile Navigation Functions
       function toggleMenu() {
         const navbarCollapse = document.getElementById("navbarNav");
